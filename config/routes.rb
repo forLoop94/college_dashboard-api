@@ -17,6 +17,9 @@ Rails.application.routes.draw do
     namespace :v1, defaults: { format: 'json' } do
       resources :students, only: [:index, :show, :new, :create, :destroy]
       resources :lecturers, only: [:index, :show, :new, :create, :destroy]
+      resources :courses, only: [:index, :show, :new, :create, :destroy]
+
+      get 'metaData/:id', to: 'students#course_metadata'
     end
   end
 end
