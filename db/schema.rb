@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_12_105323) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_12_111926) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -24,12 +24,54 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_12_105323) do
     t.index ["department_id"], name: "index_courses_on_department_id"
   end
 
+  create_table "deans", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "first_name", null: false
+    t.string "last_name", null: false
+    t.string "gender", null: false
+    t.integer "years_of_admin_exp", null: false
+    t.string "number_of_publications", null: false
+    t.string "highest_academic_qualification", null: false
+    t.string "photo", null: false
+    t.string "rank", null: false
+    t.text "bio", null: false
+    t.bigint "school_id", null: false
+    t.integer "age", null: false
+    t.bigint "phone_number", null: false
+    t.string "lga_of_origin", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["school_id"], name: "index_deans_on_school_id"
+    t.index ["user_id"], name: "index_deans_on_user_id"
+  end
+
   create_table "departments", force: :cascade do |t|
     t.string "name", null: false
     t.bigint "school_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["school_id"], name: "index_departments_on_school_id"
+  end
+
+  create_table "hods", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "first_name", null: false
+    t.string "last_name", null: false
+    t.string "gender", null: false
+    t.integer "years_of_admin_exp", null: false
+    t.string "number_of_publications", null: false
+    t.string "highest_academic_qualification", null: false
+    t.string "photo", null: false
+    t.string "rank", null: false
+    t.text "bio", null: false
+    t.bigint "department_id", null: false
+    t.integer "age", null: false
+    t.bigint "phone_number", null: false
+    t.string "lga_of_origin", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["department_id"], name: "index_hods_on_department_id"
+    t.index ["user_id"], name: "index_hods_on_user_id"
   end
 
   create_table "lecturer_courses", force: :cascade do |t|
@@ -105,7 +147,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_12_105323) do
   end
 
   add_foreign_key "courses", "departments"
+  add_foreign_key "deans", "schools"
+  add_foreign_key "deans", "users"
   add_foreign_key "departments", "schools"
+  add_foreign_key "hods", "departments"
+  add_foreign_key "hods", "users"
   add_foreign_key "lecturer_courses", "courses"
   add_foreign_key "lecturer_courses", "lecturers"
   add_foreign_key "lecturers", "departments"
