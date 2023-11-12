@@ -1,6 +1,7 @@
 class CreateLecturers < ActiveRecord::Migration[7.0]
   def change
     create_table :lecturers do |t|
+      t.references :user, null: false, foreign_key: true
       t.string :first_name, null: false
       t.string :last_name, null: false
       t.string :gender, null: false
@@ -10,7 +11,7 @@ class CreateLecturers < ActiveRecord::Migration[7.0]
       t.string :photo, null: false
       t.string :rank, null: false
       t.text :bio, null: false
-      t.string :department, null: false
+      t.references :department, null: false, foreign_key: true
       t.integer :age, null: false
       t.bigint :phone_number, null: false
       t.string :lga_of_origin, null: false
