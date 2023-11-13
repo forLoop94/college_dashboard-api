@@ -12,11 +12,15 @@ class Api::V1::StudentsController < ApplicationController
   end
 
   def course_metadata
+    # @student = Student.find(params[:id])
+    # @student_level = @student.level
+    # @student_dept = @student.department
+    # @target_courses = Course.where(department: @student_dept, level: @student_level)
+    # render json: @target_courses
+
     @student = Student.find(params[:id])
-    @student_level = @student.level
-    @student_dept = @student.department
-    @target_courses = Course.where(department: @student_dept, level: @student_level)
-    render json: @target_courses
+
+    @student_courses = @student.courses
   end
 
   def create
@@ -43,12 +47,13 @@ class Api::V1::StudentsController < ApplicationController
     @student = Student.find(params[:id])
     @student.destroy
 
-    render json: { message: "student succesfully destroyed" }, status: :ok
+    render json: { message: 'student succesfully destroyed' }, status: :ok
   end
 
   private
 
   def student_params
-    params.require(:student).permit(:first_name, :last_name, :photo, :phone_number, :level, :gender, :department, :age, :bio, :lga_of_origin, :user_id)
+    params.require(:student).permit(:first_name, :last_name, :photo, :phone_number, :level, :gender, :department, :age,
+                                    :bio, :lga_of_origin, :user_id)
   end
 end
