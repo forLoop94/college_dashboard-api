@@ -18,5 +18,36 @@ class Api::V1::LecturersController < ApplicationController
     render json: @lecturer_courses
   end
 
+  def create
+    @lecturer = Lecturer.new(lecturer_params)
 
+    if @lecturer.save
+      render json: { lecturer: @lecturer, message: 'Lecturer successfully created.' }, status: :created
+    else
+      render json: @lecturer.errors, status: :unprocessable_entity
+    end
+  end
+
+  def update
+    @lecturer = Lecturer.find(params[:id])
+
+    if @lecturer.update(lecturer_params)
+      render json: { lecturer: @lecturer, message: 'Lecturer successfully updated.' }, status: :ok
+    else
+      render json: @lecturer.errors, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    @lecturer = lecturer.find(params[:id])
+    @lecturer.destroy
+
+    render json: { message: 'Lecturer succesfully destroyed' }, status: :ok
+  end
+
+  private
+
+  def lecturer_params
+    params.require(:lecturer).permit(:first_name, :last_name, :gender, :core_discipline, :number_of_publications, :highest_academic_qualification, :photo, :rank, :bio, :department_id, :age, :phone_number, :lga_of_origin, :user_id)
+  end
 end
