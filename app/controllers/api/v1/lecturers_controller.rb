@@ -7,11 +7,16 @@ class Api::V1::LecturersController < ApplicationController
   end
 
   def show
-    @lecturer = Lecturer.find(params[:id]);
+    @lecturer = Lecturer.find(params[:id])
     render json: @lecturer
   end
 
-  def courses_meta
-    
+  def course_metaData
+    @lecturer = Lecturer.find(params[:id])
+
+    @lecturer_courses = @lecturer.courses
+    render json: @lecturer_courses
   end
+
+
 end

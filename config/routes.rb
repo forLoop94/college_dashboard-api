@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'current_user', to: "current_user#index"
   devise_for :users, path: '', path_names: {
     sign_in: 'login',
     sign_out: 'logout',
@@ -20,6 +21,7 @@ Rails.application.routes.draw do
       resources :courses, only: [:index, :show, :new, :create, :destroy]
 
       get 'metaData/:id', to: 'students#course_metadata'
+      get 'lecturerData/:id', to: 'lecturers#course_metaData'
     end
   end
 end

@@ -47,6 +47,6 @@ class Api::V1::StudentsController < ApplicationController
   private
 
   def student_params
-    params.require(:student).permit(:first_name, :last_name, :photo, :phone_number, :level, :gender, :department, :age, :bio, :lga_of_origin, :user_id)
+    params.require(:student).permit(:first_name, :last_name, :photo, :phone_number, :level, :gender, :department_id, :age, :bio, :lga_of_origin, :user_id)
   end
 end
