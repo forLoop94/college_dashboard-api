@@ -11,6 +11,14 @@ class Api::V1::LecturersController < ApplicationController
     render json: @lecturer
   end
 
+  def course_list
+    @lecturer = Lecturer.find(params[:id])
+    @deptId = @lecturer.department_id
+    @courses = Course.where(department_id: @deptId)
+
+    render json: @courses
+  end
+
   def course_metaData
     @lecturer = Lecturer.find(params[:id])
 
