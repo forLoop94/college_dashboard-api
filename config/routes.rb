@@ -20,6 +20,7 @@ Rails.application.routes.draw do
       resources :lecturers, only: [:index, :show, :new, :create, :destroy]
       resources :courses, only: [:index, :show, :new, :create, :destroy]
       resources :grades, only: [:index, :show, :create, :update, :destroy]
+      resources :hods, only: [:index, :show, :create, :update, :destroy]
 
       get 'metaData/:id', to: 'students#course_metadata'
       get 'lecturerData/:id', to: 'lecturers#course_metaData'
