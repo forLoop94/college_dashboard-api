@@ -1,5 +1,5 @@
 class Api::V1::LecturersController < ApplicationController
-  # before_action :authenticate_user!
+  before_action :authenticate_user!
 
   def index
     @lecturers = Lecturer.all

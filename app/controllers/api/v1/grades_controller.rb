@@ -21,9 +21,10 @@ class Api::V1::GradesController < ApplicationController
     @grade = Grade.find(params[:id])
 
     if @grade.update(grade_params)
-      render json: { grade: @grade, message: "Grade updated successfully." } status: :ok
+      render json: { grade: @grade, message: "Grade updated successfully." }, status: :ok
     else
       render json: @grade.errors, message: "Grade could not be updated", status: :unprocessable_entity
+    end
   end
 
   def destroy
