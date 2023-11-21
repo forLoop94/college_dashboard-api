@@ -9,10 +9,6 @@ Rails.application.routes.draw do
     sessions: 'users/sessions',
     registrations: 'users/registrations'
   }
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Defines the root path route ("/")
-  # root "articles#index"
 
   namespace :api do
     namespace :v1, defaults: { format: 'json' } do
@@ -21,6 +17,7 @@ Rails.application.routes.draw do
       resources :courses, only: [:index, :show, :new, :create, :destroy]
       resources :grades, only: [:index, :show, :create, :update, :destroy]
       resources :hods, only: [:index, :show, :create, :update, :destroy]
+      resources :deans, only: [:index, :show, :create, :update, :destroy]
 
       get 'metaData/:id', to: 'students#course_metadata'
       get 'lecturerData/:id', to: 'lecturers#course_metaData'

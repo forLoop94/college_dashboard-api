@@ -39,6 +39,6 @@ class Api::V1::HodsController < ApplicationController
   private
 
   def hod_params
-    params.require(:hod).permit(:first_name, :last_name, :gender, :years_of_admin_exp, :number_of_publications, :highest_academic_qualification, :photo, :rank, :bio, :department_id, :age, :phone_number, :lga_of_origin)
+    params.require(:hod).permit(:first_name, :last_name, :gender, :years_of_admin_exp, :number_of_publications, :highest_academic_qualification, :photo, :rank, :bio, :department_id, :age, :phone_number, :lga_of_origin, :user_id)
   end
 end
