@@ -11,6 +11,16 @@ class Api::V1::StudentsController < ApplicationController
     render json: @student
   end
 
+  def recommended_courses
+    # @student = Student.find(params[:id])
+    @student = current_user.student
+    @student_dept = @student.department_id
+    @student_level = @student.level
+
+    @rec_courses = Course.where(department_id: @student_dept, level: @student_level)
+    render json: @rec_courses
+  end
+
   def course_metadata
     @student = Student.includes(:department).find(params[:id])
     @student_courses = @student.grades_with_values

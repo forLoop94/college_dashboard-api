@@ -19,13 +19,13 @@ class Api::V1::CoursesController < ApplicationController
     render json: @course_students
   end
 
-  def Create
-    @cousre = Course.new(course_params)
+  def create
+    @course = Course.new(course_params)
 
     if @course.save
-      render json: { cousre: @course, message: "Course created successfully" }, status: :created
+      render json: { course: @course, message: "Course created successfully" }, status: :created
     else
-      render json: @cousre.errors, message: "Course could not be created", status: :unprocessable_entity
+      render json: @course.errors, message: "Course could not be created", status: :unprocessable_entity
     end
   end
 
@@ -49,6 +49,6 @@ class Api::V1::CoursesController < ApplicationController
   private
 
   def course_params
-    params.require(:cousre).permit(:title, :code, :level, :department_id)
+    params.require(:course).permit(:title, :code, :level, :department_id)
   end
 end

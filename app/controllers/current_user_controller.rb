@@ -17,9 +17,9 @@ class CurrentUserController < ApplicationController
     when 'lecturer'
       current_user.lecturer.id if user_profile?('lecturer')
     when 'HOD'
-      current_user.hod.id
+      current_user.hod.id if user_profile?('HOD')
     when 'dean'
-      current_user.dean.id
+      current_user.dean.id if user_profile?('dean')
     else
       return nil
     end
