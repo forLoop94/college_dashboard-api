@@ -21,7 +21,7 @@ Rails.application.routes.draw do
 
       get 'metaData/:id', to: 'students#course_metadata'
       get 'recommended_courses', to: 'students#recommended_courses'
-      get 'lecturerData/:id', to: 'lecturers#course_metaData'
+      get 'assigned_courses', to: 'lecturers#assigned_courses'
       get 'course_list/:id', to: 'lecturers#course_list'
       get 'course_students/:id', to: 'courses#course_students'
     end

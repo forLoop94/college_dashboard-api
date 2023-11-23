@@ -15,6 +15,15 @@ class Api::V1::CoursesController < ApplicationController
   def course_students
     @course = Course.find(params[:id])
 
+    @dept_id = @course.department_id
+    @level = @course.level
+    @course_students = Student.where(department_id: @dept_id, level: @level)
+    render json: @course_students
+  end
+
+  def specific_course_students
+    @course = Course.find(params[:id])
+
     @course_students = @course.students
     render json: @course_students
   end

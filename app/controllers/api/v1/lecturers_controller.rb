@@ -19,8 +19,8 @@ class Api::V1::LecturersController < ApplicationController
     render json: @courses
   end
 
-  def course_metaData
-    @lecturer = Lecturer.find(params[:id])
+  def assigned_courses
+    @lecturer = current_user.lecturer
 
     @lecturer_courses = @lecturer.courses
     render json: @lecturer_courses
