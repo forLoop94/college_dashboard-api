@@ -7,6 +7,14 @@ class Api::V1::GradesController < ApplicationController
     render json: @grades
   end
 
+  def target_grade
+    @student_id = Student.find(params[:student_id]).id
+    @course_id = Course.find(params[:id]).id
+
+    @grade = Grade.where(student_id: @student_id, course_id: @course_id).first
+    render json: @grade.as_json(include: { course: {}, student: {} })
+  end
+
   def create
     @grade = Grade.new(grade_params)
 
