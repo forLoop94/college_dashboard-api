@@ -2,8 +2,8 @@ class Api::V1::StudentsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @students = Student.all
-    render json: @students
+    @students = Student.all.includes(:department)
+    render json: @students.to_json(include: :department)
   end
 
   def show
@@ -12,17 +12,15 @@ class Api::V1::StudentsController < ApplicationController
   end
 
   def recommended_courses
-    # @student = Student.find(params[:id])
     @student = current_user.student
     @student_dept = @student.department_id
     @student_level = @student.level
 
-    @rec_courses = Course.where(department_id: @student_dept, level: @student_level)
-    render json: @rec_courses
+    @rec_courses = Course.includes(:department).where(department_id: @student_dept, level: @student_level)
+    render json: @rec_courses.to_json(include: :department)
   end
 
   def course_grade
-    # @student = Student.includes(:department).find(params[:id])
     @student = current_user.student
     @student_courses = @student.course_with_grades
     render json: @student_courses
