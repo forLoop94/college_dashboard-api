@@ -10,14 +10,19 @@ class Api::V1::HodsController < ApplicationController
   end
 
   def create
-    @hod = Hod.new(hod_params)
+    if current_user
+      @hod = current_user.build_hod(hod_params)
 
-    if @hod.save
-      render json: { hod: @hod, message: "HOD successfully created" }, status: :created
+      if @hod.save
+        render json: { hod: @hod, message: "HOD successfully created" }, status: :created
+      else
+        render json: { errors: @hod.errors, message: "HOD could not be created" }, status: :unprocessable_entity
+      end
     else
-      render json: @hod.errors, message: "HOD could not be created", status: :unprocessable_entity
+      render json: { message: "User not authenticated" }, status: :unauthorized
     end
   end
+
 
   def update
     @hod = Hod.find(params[:id])
@@ -39,6 +44,6 @@ class Api::V1::HodsController < ApplicationController
   private
 
   def hod_params
-    params.require(:hod).permit(:first_name, :last_name, :gender, :years_of_admin_exp, :number_of_publications, :highest_academic_qualification, :photo, :rank, :bio, :department_id, :age, :phone_number, :lga_of_origin, :user_id)
+    params.require(:hod).permit(:first_name, :last_name, :gender, :years_of_admin_exp, :number_of_publications, :highest_academic_qualification, :photo, :rank, :bio, :department_id, :age, :phone_number, :lga_of_origin)
   end
 end

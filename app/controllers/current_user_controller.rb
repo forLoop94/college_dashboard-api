@@ -17,7 +17,7 @@ class CurrentUserController < ApplicationController
     when 'lecturer'
       current_user.lecturer.id if user_profile?('lecturer')
     when 'HOD'
-      current_user.hod.id if user_profile?('HOD')
+      current_user.hod.id if user_profile?('hod')
     when 'dean'
       current_user.dean.id if user_profile?('dean')
     else
@@ -31,7 +31,7 @@ class CurrentUserController < ApplicationController
       Student.exists?(user_id: current_user.id)
     when 'lecturer'
       Lecturer.exists?(user_id: current_user.id)
-    when 'HOD'
+    when 'hod'
       Hod.exists?(user_id: current_user.id)
     when 'dean'
       Dean.exists?(user_id: current_user.id)

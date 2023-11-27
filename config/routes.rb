@@ -18,6 +18,7 @@ Rails.application.routes.draw do
       resources :grades, only: [:index, :show, :create, :update, :destroy]
       resources :hods, only: [:index, :show, :create, :update, :destroy]
       resources :deans, only: [:index, :show, :create, :update, :destroy]
+      resources :departments, only: [:index, :show, :create]
 
       get 'course_grade', to: 'students#course_grade'
       get 'recommended_courses', to: 'students#recommended_courses'

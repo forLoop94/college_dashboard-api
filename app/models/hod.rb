@@ -1,4 +1,5 @@
 class Hod < ApplicationRecord
+  belongs_to :user
   belongs_to :department
 
   validate :unique_user_hod, on: :create
