@@ -23,6 +23,26 @@ class Api::V1::HodsController < ApplicationController
     end
   end
 
+  def department_students
+    @department_id = current_user.hod.department_id
+
+    @students = Student.includes(:department).where(department_id: @department_id)
+    render json: @students.to_json(include: :department)
+  end
+
+  def department_lecturers
+    @department_id = current_user.hod.department_id
+
+    @lecturers = Lecturer.includes(:department).where(department_id: @department_id)
+    render json: @lecturers.to_json(include: :department)
+  end
+
+  def department_courses
+    @department_id = current_user.hod.department_id
+
+    @courses = Course.includes(:department).where(department_id: @department_id)
+    render json: @courses.to_json(include: :department)
+  end
 
   def update
     @hod = Hod.find(params[:id])
