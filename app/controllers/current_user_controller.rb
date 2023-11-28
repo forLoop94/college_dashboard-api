@@ -16,7 +16,7 @@ class CurrentUserController < ApplicationController
       current_user.student.id if user_profile?('student')
     when 'lecturer'
       current_user.lecturer.id if user_profile?('lecturer')
-    when 'HOD'
+    when 'hod'
       current_user.hod.id if user_profile?('hod')
     when 'dean'
       current_user.dean.id if user_profile?('dean')
