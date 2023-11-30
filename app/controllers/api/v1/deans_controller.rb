@@ -10,7 +10,7 @@ class Api::V1::DeansController < ApplicationController
   end
 
   def create
-    @dean = Dean.new(dean_params)
+    @dean = current_user.build_dean(dean_params)
 
     if @dean.save
       render json: { dean: @dean, message: "Dean successfully created" }, status: :created
@@ -39,6 +39,6 @@ class Api::V1::DeansController < ApplicationController
   private
 
   def dean_params
-    params.require(:dean).permit(:first_name, :last_name, :gender, :years_of_admin_exp, :number_of_publications, :highest_academic_qualification, :photo, :rank, :bio, :school_id, :age, :phone_number, :lga_of_origin, :user_id)
+    params.require(:dean).permit(:first_name, :last_name, :gender, :years_of_admin_exp, :number_of_publications, :highest_academic_qualification, :photo, :rank, :bio, :school_id, :age, :phone_number, :lga_of_origin)
   end
 end

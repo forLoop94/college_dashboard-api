@@ -1,5 +1,6 @@
 class Dean < ApplicationRecord
   belongs_to :school
+  belongs_to :user
 
   validate :unique_user_dean, on: :create
 
