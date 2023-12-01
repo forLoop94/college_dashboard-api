@@ -20,6 +20,7 @@ Rails.application.routes.draw do
       resources :deans, only: [:index, :show, :create, :update, :destroy]
       resources :departments, only: [:index, :show, :create]
       resources :lecturer_courses, only: [:create, :destroy]
+      resources :schools, only: [:index]
 
       get 'course_grade', to: 'students#course_grade'
       get 'recommended_courses', to: 'students#recommended_courses'
@@ -31,6 +32,7 @@ Rails.application.routes.draw do
       get 'department_lecturers', to: 'hods#department_lecturers'
       get 'department_courses', to: 'hods#department_courses'
       get 'lecturer_courses/:id', to: 'lecturer_courses#allotment_data'
+      get 'dean_index', to: 'departments#dean_index'
     end
   end
 end

@@ -1,7 +1,20 @@
 class Api::V1::DepartmentsController < ApplicationController
   def index
-  @departments = Department.all
-  render json: @departments
+    @departments = Department.includes(:school).all
+    render json: @departments.to_json(include: :school)
+  end
+
+  def dean_index
+    role_data = current_user.send(current_user.role.downcase)
+    @school_id = role_data.school_id
+    @departments = Department.where(school_id: @school_id)
+    @departments_count = @departments.count
+
+    @departments_list = @departments.map do |dept|
+      dept.as_json.merge!(count: @departments_count)
+    end
+
+    render json: @departments_list
   end
 
   def show
