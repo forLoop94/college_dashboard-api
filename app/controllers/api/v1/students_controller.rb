@@ -23,10 +23,8 @@ class Api::V1::StudentsController < ApplicationController
   def course_grade
     @student = current_user.student
     @student_courses = @student.course_with_grades.map do |course|
-      course.as_json.merge(symbol: grade_alphabet(course["grade"]), points: grade_point(grade_alphabet(course["grade"])))
+      course.as_json.merge(symbol: @student.grade_alphabet(course["grade"]), points: @student.grade_point(@student.grade_alphabet(course["grade"])), gpa: @student.grade_point_calculator)
     end
-    @student_courses.push({gpa: grade_point_calculator(@student_courses)})
-
     render json: @student_courses
   end
 
@@ -58,50 +56,6 @@ class Api::V1::StudentsController < ApplicationController
   end
 
   private
-
-  def grade_alphabet(score)
-    if score >= 0 && score < 40
-      'F'
-    elsif score >= 40 && score < 45
-      'E'
-    elsif score >= 45 && score < 50
-      'D'
-    elsif score >= 50 && score < 60
-      'C'
-    elsif score >= 60 && score < 70
-      'B'
-    else
-      'A'
-    end
-  end
-
-  def grade_point(symbol)
-    case symbol
-    when 'A'
-      5
-    when 'B'
-      4
-    when 'C'
-      3
-    when 'D'
-      2
-    when 'E'
-      1
-    else
-      0.2
-    end
-  end
-
-  def grade_point_calculator(grades_info)
-    total_quality_points = grades_info.reduce(0) do |total, num|
-      total + (grade_point(grade_alphabet(num["grade"])) * num["credit_load"])
-    end
-
-    total_credit = grades_info.reduce(0) { |total, num| total + num["credit_load"] }
-
-    gpa = total_quality_points / total_credit
-    gpa.round(2)
-  end
 
   def student_params
     params.require(:student).permit(:first_name, :last_name, :photo, :phone_number, :level, :gender, :department_id, :age, :bio, :lga_of_origin, :user_id)
