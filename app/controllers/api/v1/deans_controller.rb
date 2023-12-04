@@ -9,6 +9,20 @@ class Api::V1::DeansController < ApplicationController
     render json: @dean
   end
 
+  def dean_list
+    # @dean = current_user.dean
+
+    @students = Student.includes(:department).where(id: 10).select(:first_name, :last_name, :department_id).map do |student|
+      {
+        full_name: "#{student.first_name} #{student.last_name}",
+        department: student.department.name,
+        gpa: student.calculate_grade_point
+      }
+    end
+    render json: @students
+  end
+
+
   def create
     @dean = current_user.build_dean(dean_params)
 

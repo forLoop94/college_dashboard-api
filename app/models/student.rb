@@ -41,15 +41,19 @@ class Student < ApplicationRecord
     end
   end
 
-  def grade_point_calculator
+  def calculate_grade_point
     total_quality_points = course_with_grades.reduce(0) do |total, num|
       total + (grade_point(grade_alphabet(num["grade"])) * num["credit_load"])
     end
 
-    total_credit = course_with_grades.reduce(0) { |total, num| total + num["credit_load"] }
+    total_credit = course_with_grades.reduce(0.0) { |total, num| total + num["credit_load"].to_f }
 
-    gpa = total_quality_points / total_credit
-    gpa.round(2)
+    if total_credit != 0
+      gpa = total_quality_points / total_credit
+      gpa.round(2)
+    else
+      0.0
+    end
   end
 
   private
