@@ -30,6 +30,21 @@ class Api::V1::StudentsController < ApplicationController
     render json: @student_courses
   end
 
+  def student_messages
+    @student_id = current_user.student.id
+    @course_id = Course.find(params[:course_id])
+    @lecturer_id = Lecturer.find(params[:id])
+
+    @chat_room = LessonArea.find_by(student_id: @student_id, course_id: @course_id, lecturer_id: @lecturer_id)
+
+    if @chat_room
+      @chats = @chat_room.chats
+      render json: @chats
+    else
+      render json: { error: 'No chat room found' }, status: :not_found
+    end
+  end
+
   def create
     @student = Student.new(student_params)
     @student = current_user.build_student(student_params)
