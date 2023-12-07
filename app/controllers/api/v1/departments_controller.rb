@@ -18,17 +18,17 @@ class Api::V1::DepartmentsController < ApplicationController
   end
 
   def show
-  @department = Department.find(params[:id])
-  render json: @department
+    @department = Department.find(params[:id])
+    render json: @department
   end
 
   def create
     @department = Department.new(dept_params)
 
     if @department.save
-      render json: { department: @department, message: "Department created succesfully" }, status: :created
+      render json: { department: @department, message: 'Department created succesfully' }, status: :created
     else
-      render json: @department.errors, message: "Department could not be created", status: :unprocessable_entity
+      render json: @department.errors, message: 'Department could not be created', status: :unprocessable_entity
     end
   end
 

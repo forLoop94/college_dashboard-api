@@ -32,9 +32,9 @@ class Api::V1::CoursesController < ApplicationController
     @course = Course.new(course_params)
 
     if @course.save
-      render json: { course: @course, message: "Course created successfully" }, status: :created
+      render json: { course: @course, message: 'Course created successfully' }, status: :created
     else
-      render json: @course.errors, message: "Course could not be created", status: :unprocessable_entity
+      render json: @course.errors, message: 'Course could not be created', status: :unprocessable_entity
     end
   end
 
@@ -42,9 +42,9 @@ class Api::V1::CoursesController < ApplicationController
     @course = Course.find(params[:id])
 
     if @course.update(course_params)
-      render json: { cousre: @course, message: "Course successfully updated" }, status: :ok
+      render json: { cousre: @course, message: 'Course successfully updated' }, status: :ok
     else
-      render json: @course.errors, message: "Course could not be updated", status: :unprocessable_entity
+      render json: @course.errors, message: 'Course could not be updated', status: :unprocessable_entity
     end
   end
 
@@ -52,7 +52,7 @@ class Api::V1::CoursesController < ApplicationController
     @course = Course.find(params[:id])
 
     @course.destroy
-    render json: { message: "Course succesfully deleted" }, status: :ok
+    render json: { message: 'Course succesfully deleted' }, status: :ok
   end
 
   private

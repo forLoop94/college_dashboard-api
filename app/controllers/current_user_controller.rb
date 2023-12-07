@@ -10,18 +10,27 @@ class CurrentUserController < ApplicationController
 
   private
 
+  # def user_profile_id
+  #   case current_user.role
+  #   when 'student'
+  #     current_user.student.id if user_profile?('student')
+  #   when 'lecturer'
+  #     current_user.lecturer.id if user_profile?('lecturer')
+  #   when 'hod'
+  #     current_user.hod.id if user_profile?('hod')
+  #   when 'dean'
+  #     current_user.dean.id if user_profile?('dean')
+  #   end
+  # end
+
   def user_profile_id
+    return unless user_profile?(current_user.role)
+
     case current_user.role
-    when 'student'
-      current_user.student.id if user_profile?('student')
-    when 'lecturer'
-      current_user.lecturer.id if user_profile?('lecturer')
-    when 'hod'
-      current_user.hod.id if user_profile?('hod')
-    when 'dean'
-      current_user.dean.id if user_profile?('dean')
-    else
-      return nil
+    when 'student' then current_user.student.id
+    when 'lecturer' then current_user.lecturer.id
+    when 'hod' then current_user.hod.id
+    when 'dean' then current_user.dean.id
     end
   end
 
@@ -36,7 +45,7 @@ class CurrentUserController < ApplicationController
     when 'dean'
       Dean.exists?(user_id: current_user.id)
     else
-      return false
+      false
     end
   end
 end

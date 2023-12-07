@@ -9,8 +9,8 @@ class Lecturer < ApplicationRecord
   private
 
   def unique_user_lecturer
-    if user && Lecturer.exists?(user_id: user.id)
-      errors.add(:user, "already has a lecturer profile")
-    end
+    return unless user && Lecturer.exists?(user_id: user.id)
+
+    errors.add(:user, 'already has a lecturer profile')
   end
 end

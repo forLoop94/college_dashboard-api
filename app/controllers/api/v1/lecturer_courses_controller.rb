@@ -3,30 +3,32 @@ class Api::V1::LecturerCoursesController < ApplicationController
     @hod = Hod.find(params[:id])
     @dept_id = @hod.department_id
 
-    @lecturerCourses = LecturerCourse.includes(:lecturer, :course).where(lecturer: { department_id: @dept_id }, course: { department_id: @dept_id })
-    render json: @lecturerCourses.to_json(include: { lecturer: {}, course: {} })
+    @lecturer_courses = LecturerCourse.includes(:lecturer, :course).where(lecturer: { department_id: @dept_id },
+                                                                          course: { department_id: @dept_id })
+    render json: @lecturer_courses.to_json(include: { lecturer: {}, course: {} })
   end
 
   def create
-    @lecturerCourse = LecturerCourse.new(lecturerCourse_params)
+    @lecturer_course = LecturerCourse.new(lecturer_course_params)
 
-    if @lecturerCourse.save
-      render json: { lecturerCourse: @lectureCourse, message: "Lecturer assigned course successfull" }, status: :created
+    if @lecturer_course.save
+      render json: { lecturer_course: @lecturer_course, message: 'Lecturer assigned course successfull' },
+             status: :created
     else
-      render json: @lecturerCourse.errors, message: "Assignment not successful", status: :unprocessable_entity
+      render json: @lecturer_course.errors, message: 'Assignment not successful', status: :unprocessable_entity
     end
   end
 
   def destroy
-    @lecturerCourse = LecturerCourse.find(params[:id])
+    @lecturer_course = LecturerCourse.find(params[:id])
 
-    @lectureCourse.destroy
-    render json: { message: "Assignment successfully removed" }, status: :ok
+    @lecturer_course.destroy
+    render json: { message: 'Assignment successfully removed' }, status: :ok
   end
 
   private
 
-  def lecturerCourse_params
+  def lecturer_course_params
     params.require(:lecturer_course).permit(:lecturer_id, :course_id)
   end
 end

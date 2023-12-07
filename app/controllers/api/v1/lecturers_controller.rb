@@ -13,8 +13,8 @@ class Api::V1::LecturersController < ApplicationController
 
   def course_list
     @lecturer = Lecturer.find(params[:id])
-    @deptId = @lecturer.department_id
-    @courses = Course.where(department_id: @deptId)
+    @dept_id = @lecturer.department_id
+    @courses = Course.where(department_id: @dept_id)
 
     render json: @courses
   end
@@ -56,6 +56,8 @@ class Api::V1::LecturersController < ApplicationController
   private
 
   def lecturer_params
-    params.require(:lecturer).permit(:first_name, :last_name, :gender, :core_discipline, :number_of_publications, :highest_academic_qualification, :photo, :rank, :bio, :department_id, :age, :phone_number, :lga_of_origin)
+    params.require(:lecturer).permit(:first_name, :last_name, :gender, :core_discipline, :number_of_publications,
+                                     :highest_academic_qualification, :photo, :rank, :bio, :department_id,
+                                     :age, :phone_number, :lga_of_origin)
   end
 end
