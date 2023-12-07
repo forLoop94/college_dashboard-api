@@ -27,7 +27,7 @@ class Api::V1::LecturersController < ApplicationController
   end
 
   def create
-    @lecturer = Lecturer.new(lecturer_params)
+    @lecturer = current_user.build_lecturer(lecturer_params)
 
     if @lecturer.save
       render json: { lecturer: @lecturer, message: 'Lecturer successfully created.' }, status: :created
@@ -56,6 +56,6 @@ class Api::V1::LecturersController < ApplicationController
   private
 
   def lecturer_params
-    params.require(:lecturer).permit(:first_name, :last_name, :gender, :core_discipline, :number_of_publications, :highest_academic_qualification, :photo, :rank, :bio, :department_id, :age, :phone_number, :lga_of_origin, :user_id)
+    params.require(:lecturer).permit(:first_name, :last_name, :gender, :core_discipline, :number_of_publications, :highest_academic_qualification, :photo, :rank, :bio, :department_id, :age, :phone_number, :lga_of_origin)
   end
 end

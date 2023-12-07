@@ -22,6 +22,21 @@ class Api::V1::DeansController < ApplicationController
     render json: @students
   end
 
+  def hods_list
+    @school_id = current_user.dean.school_id
+    @departments = Department.where(school_id: @school_id)
+
+    @hods = @departments.includes(:hod).map do |dept|
+      {
+        hod: dept.hod,
+        department: {
+          name: dept.name
+        }
+      }
+    end
+    render json: @hods
+  end
+
 
   def create
     @dean = current_user.build_dean(dean_params)
