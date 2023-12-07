@@ -8,4 +8,6 @@ class User < ApplicationRecord
   has_one :lecturer, dependent: :destroy
   has_one :hod, dependent: :destroy
   has_one :dean, dependent: :destroy
+  has_many :chats, dependent: :destroy
+  has_many :lesson_submissions, dependent: :destroy
 end

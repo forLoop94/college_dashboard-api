@@ -27,6 +27,7 @@ Rails.application.routes.draw do
       get 'assigned_courses', to: 'lecturers#assigned_courses'
       get 'course_list/:id', to: 'lecturers#course_list'
       get 'course_students/:id', to: 'courses#course_students'
+      get 'course_lecturers/:id', to: 'courses#course_lecturers'
       get 'target_grade/:student_id/:id', to: 'grades#target_grade'
       get 'department_students', to: 'hods#department_students'
       get 'department_lecturers', to: 'hods#department_lecturers'

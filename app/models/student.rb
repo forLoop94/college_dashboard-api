@@ -1,6 +1,7 @@
 class Student < ApplicationRecord
   belongs_to :user
   belongs_to :department
+  has_many :lesson_areas, dependent: :destroy
   has_many :grades, dependent: :destroy
   has_many :courses, through: :grades
   has_many :course_with_grades, -> { select('courses.*, grades.value as grade') }, through: :courses, source: :grades
