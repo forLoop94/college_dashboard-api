@@ -21,6 +21,8 @@ Rails.application.routes.draw do
       resources :departments, only: [:index, :show, :create]
       resources :lecturer_courses, only: [:create, :destroy]
       resources :schools, only: [:index]
+      resources :lesson_area, only: [:create]
+      resources :chats, only: [:create]
 
       get 'course_grade', to: 'students#course_grade'
       get 'recommended_courses', to: 'students#recommended_courses'

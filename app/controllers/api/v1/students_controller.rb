@@ -41,7 +41,7 @@ class Api::V1::StudentsController < ApplicationController
       @chats = @chat_room.chats
       render json: @chats
     else
-      render json: { error: 'No chat room found' }, status: :not_found
+      render json: []
     end
   end
 
@@ -56,12 +56,11 @@ class Api::V1::StudentsController < ApplicationController
       @links = @lesson_room.lesson_submissions
       render json: @links
     else
-      render json: { error: 'Lesson room not found' }, status: :not_found
+      render json: []
     end
   end
 
   def create
-    @student = Student.new(student_params)
     @student = current_user.build_student(student_params)
 
     if @student.save
