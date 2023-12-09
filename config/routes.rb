@@ -40,6 +40,7 @@ Rails.application.routes.draw do
       get 'hods_list', to: 'deans#hods_list'
       get 'student_messages/:course_id/:id', to: 'students#student_messages'
       get 'submissions/:course_id/:id', to: 'students#submissions'
+      get 'student_lesson/:student_id/:course_id/:id', to: 'lesson_area#student_lesson'
     end
   end
 end

@@ -9,6 +9,19 @@ class Api::V1::LessonAreaController < ApplicationController
     end
   end
 
+  def student_lesson
+    @student_id = Student.find(params[:student_id])
+    @course_id = Course.find(params[:course_id])
+    @lecturer_id = Lecturer.find(params[:id])
+
+    @chat_room = LessonArea.find_by(student_id: @student_id, course_id: @course_id, lecturer_id: @lecturer_id)
+    if @chat_room
+      render json: @chat_room
+    else
+      render json: nil
+    end
+  end
+
   private
 
   def lesson_area_params
