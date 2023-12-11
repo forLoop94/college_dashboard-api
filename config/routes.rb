@@ -38,8 +38,8 @@ Rails.application.routes.draw do
       get 'dean_index', to: 'departments#dean_index'
       get 'dean_list', to: 'deans#dean_list'
       get 'hods_list', to: 'deans#hods_list'
-      get 'student_messages/:course_id/:id', to: 'students#student_messages'
-      get 'submissions/:course_id/:id', to: 'students#submissions'
+      get 'chats/:student_id/:course_id/:id', to: 'lesson_area#chats'
+      get 'submissions/:student_id/:course_id/:id', to: 'lesson_area#submissions'
       get 'student_lesson/:student_id/:course_id/:id', to: 'lesson_area#student_lesson'
     end
   end
