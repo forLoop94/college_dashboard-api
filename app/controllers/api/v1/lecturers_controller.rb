@@ -14,9 +14,9 @@ class Api::V1::LecturersController < ApplicationController
   def course_list
     @lecturer = Lecturer.find(params[:id])
     @dept_id = @lecturer.department_id
-    @courses = Course.where(department_id: @dept_id)
+    @courses = Course.includes(:department).where(department_id: @dept_id)
 
-    render json: @courses
+    render json: @courses.to_json(include: :department)
   end
 
   def assigned_courses
