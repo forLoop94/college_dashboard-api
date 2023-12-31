@@ -321,5 +321,6 @@ Devise.setup do |config|
       ['DELETE', %r{^/logout$}],
       ['DELETE', %r{^/users$}]
     ]
+    jwt.expiration_time = 30.minutes.to_i
   end
 end

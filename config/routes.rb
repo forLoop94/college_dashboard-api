@@ -18,7 +18,7 @@ Rails.application.routes.draw do
       resources :grades, only: [:index, :show, :create, :update, :destroy]
       resources :hods, only: [:index, :show, :create, :update, :destroy]
       resources :deans, only: [:index, :show, :create, :update, :destroy]
-      resources :departments, only: [:index, :show, :create]
+      resources :departments, only: [:index, :show, :create, :destroy]
       resources :lecturer_courses, only: [:create, :destroy]
       resources :schools, only: [:index]
       resources :lesson_area, only: [:create]
