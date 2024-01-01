@@ -31,7 +31,6 @@ class Api::V1::StudentsController < ApplicationController
   end
 
   def create
-    @student = Student.new(student_params)
     @student = current_user.build_student(student_params)
 
     if @student.save

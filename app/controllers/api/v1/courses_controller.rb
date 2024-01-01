@@ -21,6 +21,13 @@ class Api::V1::CoursesController < ApplicationController
     render json: @course_students
   end
 
+  def course_lecturers
+    @course = Course.find(params[:id])
+
+    @course_lecturers = @course.lecturers
+    render json: @course_lecturers
+  end
+
   def specific_course_students
     @course = Course.find(params[:id])
 
