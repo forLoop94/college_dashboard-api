@@ -33,10 +33,10 @@ class Api::V1::DepartmentsController < ApplicationController
   end
 
   def destroy
-    @department = Department.find(params[:id]);
+    @department = Department.find(params[:id])
 
     @department.destroy
-    render json: {message: "Department deleted successfully"}, status: :ok
+    render json: { message: 'Department deleted successfully' }, status: :ok
   end
 
   private

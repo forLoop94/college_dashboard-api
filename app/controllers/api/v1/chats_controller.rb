@@ -3,7 +3,7 @@ class Api::V1::ChatsController < ApplicationController
     @chat = current_user.chats.build(chat_params)
 
     if @chat.save
-      render json: {chat: @chat, message: "Chat created successfully"}, status: :created
+      render json: { chat: @chat, message: 'Chat created successfully' }, status: :created
     else
       render json: @chat.errors, status: :unprocessable_entity
     end

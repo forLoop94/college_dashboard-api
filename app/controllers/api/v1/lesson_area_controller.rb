@@ -33,9 +33,9 @@ class Api::V1::LessonAreaController < ApplicationController
     @lesson_area = LessonArea.new(lesson_area_params)
 
     if @lesson_area.save
-      render json: {lesson_area: @lesson_area, message: "Lesson area created successfully"}, status: :created
+      render json: { lesson_area: @lesson_area, message: 'Lesson area created successfully' }, status: :created
     else
-      render json: @lesson_area.errors, message: "Lesson area could not be created", status: :unprocessable_entity
+      render json: @lesson_area.errors, message: 'Lesson area could not be created', status: :unprocessable_entity
     end
   end
 
