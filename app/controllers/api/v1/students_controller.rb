@@ -61,6 +61,6 @@ class Api::V1::StudentsController < ApplicationController
 
   def student_params
     params.require(:student).permit(:first_name, :last_name, :photo, :phone_number, :level, :gender, :department_id,
-                                    :age, :bio, :lga_of_origin)
+                                    :age, :bio, :facebook, :instagram, :linkedIn, :nationality, :email, :wellfound, :twitter, :medium)
   end
 end

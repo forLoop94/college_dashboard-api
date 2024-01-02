@@ -70,6 +70,6 @@ class Api::V1::DeansController < ApplicationController
   def dean_params
     params.require(:dean).permit(:first_name, :last_name, :gender, :years_of_admin_exp, :number_of_publications,
                                  :highest_academic_qualification, :photo, :rank, :bio, :school_id,
-                                 :age, :phone_number, :lga_of_origin)
+                                 :age, :phone_number, :facebook, :instagram, :linkedIn, :nationality, :email, :wellfound, :twitter, :medium)
   end
 end
