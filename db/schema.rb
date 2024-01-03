@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_12_07_143618) do
+ActiveRecord::Schema[7.0].define(version: 2024_01_02_083202) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -49,9 +49,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_07_143618) do
     t.bigint "school_id", null: false
     t.integer "age", null: false
     t.bigint "phone_number", null: false
-    t.string "lga_of_origin", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "facebook"
+    t.string "email", null: false
+    t.string "linkedIn"
+    t.string "twitter"
+    t.string "wellfound"
+    t.string "instagram"
+    t.string "medium"
+    t.string "nationality", null: false
     t.index ["school_id"], name: "index_deans_on_school_id"
     t.index ["user_id"], name: "index_deans_on_user_id"
   end
@@ -88,9 +95,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_07_143618) do
     t.bigint "department_id", null: false
     t.integer "age", null: false
     t.bigint "phone_number", null: false
-    t.string "lga_of_origin", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "facebook"
+    t.string "email", null: false
+    t.string "linkedIn"
+    t.string "twitter"
+    t.string "wellfound"
+    t.string "instagram"
+    t.string "medium"
+    t.string "nationality", null: false
     t.index ["department_id"], name: "index_hods_on_department_id"
     t.index ["user_id"], name: "index_hods_on_user_id"
   end
@@ -118,9 +132,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_07_143618) do
     t.bigint "department_id", null: false
     t.integer "age", null: false
     t.bigint "phone_number", null: false
-    t.string "lga_of_origin", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "facebook"
+    t.string "email", null: false
+    t.string "linkedIn"
+    t.string "twitter"
+    t.string "wellfound"
+    t.string "instagram"
+    t.string "medium"
+    t.string "nationality", null: false
     t.index ["department_id"], name: "index_lecturers_on_department_id"
     t.index ["user_id"], name: "index_lecturers_on_user_id"
   end
@@ -163,9 +184,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_07_143618) do
     t.bigint "department_id", null: false
     t.integer "age"
     t.text "bio"
-    t.string "lga_of_origin"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "facebook"
+    t.string "email", null: false
+    t.string "linkedIn"
+    t.string "twitter"
+    t.string "wellfound"
+    t.string "instagram"
+    t.string "medium"
+    t.string "nationality", null: false
     t.index ["department_id"], name: "index_students_on_department_id"
     t.index ["user_id"], name: "index_students_on_user_id"
   end
