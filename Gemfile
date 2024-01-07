@@ -20,6 +20,8 @@ gem 'puma', '~> 5.0'
 
 gem 'dotenv-rails'
 
+gem 'rails_12factor', group: :production
+
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
 
