@@ -86,5 +86,7 @@ test:
 production:
   <<: *default
   database: college_dashboard_api_production
-  username: college_dashboard_api
-  password: <%= ENV["COLLEGE_DASHBOARD_API_DATABASE_PASSWORD"] %>
+  # username: college_dashboard_api
+  # password: <%= ENV["COLLEGE_DASHBOARD_API_DATABASE_PASSWORD"] %>
+  username: <%= ENV["DATABASE_USERNAME"] %>
+  password: <%= ENV["DATABASE_PASSWORD"] %>
