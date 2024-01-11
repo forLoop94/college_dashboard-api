@@ -58,6 +58,6 @@ class Api::V1::LecturersController < ApplicationController
   def lecturer_params
     params.require(:lecturer).permit(:first_name, :last_name, :gender, :core_discipline, :number_of_publications,
                                      :highest_academic_qualification, :photo, :rank, :bio, :department_id,
-                                     :age, :phone_number, :lga_of_origin)
+                                     :age, :phone_number, :facebook, :instagram, :linkedIn, :nationality, :email, :wellfound, :twitter, :medium)
   end
 end
