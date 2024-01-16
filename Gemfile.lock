@@ -112,10 +112,6 @@ GEM
     jsonapi-serializer (2.2.0)
       activesupport (>= 4.2)
     jwt (2.7.1)
-    kredis (1.7.0)
-      activemodel (>= 6.0.0)
-      activesupport (>= 6.0.0)
-      redis (>= 4.2, < 6)
     loofah (2.21.4)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
@@ -184,7 +180,6 @@ GEM
     rake (13.1.0)
     rdoc (6.6.0)
       psych (>= 4.0.0)
-    redis (4.8.1)
     reline (0.4.0)
       io-console (~> 0.5)
     responders (3.1.1)
@@ -211,7 +206,6 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
-  bcrypt (~> 3.1.7)
   bootsnap
   debug
   devise
@@ -219,12 +213,10 @@ DEPENDENCIES
   dotenv-rails
   faker (~> 3.2)
   jsonapi-serializer
-  kredis
   pg (~> 1.1)
   puma (~> 5.0)
   rack-cors
   rails (~> 7.0.8)
-  redis (~> 4.0)
   tzinfo-data
 
 RUBY VERSION
