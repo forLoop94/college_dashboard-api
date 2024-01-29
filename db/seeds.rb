@@ -4,9 +4,12 @@ User.destroy_all
 Student.destroy_all
 Lecturer.destroy_all
 Course.destroy_all
+School.destroy_all
 Department.destroy_all
 Hod.destroy_all
 Dean.destroy_all
+Chat.destroy_all
+LecturerCourse.destroy_all
 
 
 # Seed for Users
