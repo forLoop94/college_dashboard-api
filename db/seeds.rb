@@ -1,13 +1,13 @@
 # require 'faker'
 
 User.destroy_all
-# Student.destroy_all
-# Lecturer.destroy_all
-# Course.destroy_all
-# Department.destroy_all
-# Hod.destroy_all
-# Dean.destroy_all
-# Chats.destroy_all
+Student.destroy_all
+Lecturer.destroy_all
+Course.destroy_all
+Department.destroy_all
+Hod.destroy_all
+Dean.destroy_all
+Chats.destroy_all
 
 
 # Seed for Users
