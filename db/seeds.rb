@@ -7,7 +7,6 @@ Course.destroy_all
 Department.destroy_all
 Hod.destroy_all
 Dean.destroy_all
-Chats.destroy_all
 
 
 # Seed for Users
