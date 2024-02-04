@@ -25,6 +25,7 @@ Rails.application.routes.draw do
       resources :chats, only: [:create]
 
       get 'course_grade', to: 'students#course_grade'
+      get 'student_grades/:id', to: 'grades#student_grades'
       get 'recommended_courses', to: 'students#recommended_courses'
       get 'assigned_courses', to: 'lecturers#assigned_courses'
       get 'course_list/:id', to: 'lecturers#course_list'
